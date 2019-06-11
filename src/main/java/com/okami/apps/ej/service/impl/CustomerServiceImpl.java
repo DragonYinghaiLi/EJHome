@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
     private CustomerMapper customerMapper;
 
     /**
-     * 查询
+     * 查询全部顾客
      * @return
      */
     @Override
@@ -27,6 +27,26 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerMapper.selectByExample(example);
     }
 
+    /**
+     * 通过id查询
+     * @param id
+     * @return
+     */
+    @Override
+    public Customer findById(long id) {
+        //调用dao层代码完成操作
+        return customerMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 模糊查询
+     * @param customer
+     * @return
+     */
+    @Override
+    public List<Customer> query(Customer customer){
+        return customerMapper.query(customer);
+    }
     /***
      * 添加顾客
      * @param customer

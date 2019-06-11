@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface IWaiterService {
     List<Waiter> findAll();
+    Waiter findById(long id);
+    List<Waiter> query(Waiter customer);
     void deleteById(long id) throws Exception;
     void save(Waiter waiter) throws Exception;
     void update(Waiter waiter) throws Exception;

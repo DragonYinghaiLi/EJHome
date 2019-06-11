@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface ICustomerService {
     List<Customer> findAll();
+    List<Customer> query(Customer customer);
+    Customer findById(long id);
     void deleteById(long id) throws Exception;
     void save(Customer customer) throws Exception;
     void update(Customer customer) throws Exception;

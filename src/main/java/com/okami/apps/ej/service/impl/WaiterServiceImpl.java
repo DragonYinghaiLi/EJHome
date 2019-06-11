@@ -15,7 +15,7 @@ public class WaiterServiceImpl implements IWaiterService {
     private WaiterMapper waiterMapper;
 
     /**
-     * 通过id查询服务员
+     * 查询服务员
      * @return
      */
     @Override
@@ -24,6 +24,26 @@ public class WaiterServiceImpl implements IWaiterService {
         return waiterMapper.selectByExample(example);
     }
 
+    /**
+     * 通过id查询
+     * @param id
+     * @return
+     */
+    @Override
+    public Waiter findById(long id) {
+        //调用dao层代码完成操作
+        return waiterMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 模糊查询
+     * @param waiter
+     * @return
+     */
+    @Override
+    public List<Waiter> query(Waiter waiter){
+        return waiterMapper.query(waiter);
+    }
     /***
      * 添加服务员
      * @param waiter

@@ -19,44 +19,45 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @GetMapping("findAll")
-    @ApiOperation("查询顾客信息")
+    @ApiOperation("查询所有顾客信息")
     public Message findAll(){
         List<Customer> list=customerService.findAll();
         return MessageUtil.success("success",list);
     }
+    @ApiOperation("通过id查询用户信息")
+    @GetMapping("findById")
+    public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
+        List<Customer> list= (List<Customer>) customerService.findById(id);
+        return MessageUtil.success("查询成功",list);
+
+    }
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Customer customer){
+        List<Customer> list=customerService.query(customer);
+        return MessageUtil.success("success",list);
+    }
+
+
 
     @GetMapping("deleteById")
     @ApiOperation("通过id删除顾客信息")
-    public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
-        try{
+    public Message deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws Exception {
             customerService.deleteById(id);
-            return "删除成功";
-        }catch(Exception e){
-            e.printStackTrace();
-            return e.getMessage();
-        }
+            return MessageUtil.success("删除成功");
     }
     @GetMapping("save")
     @ApiOperation("添加信息")
-    public  String save(Customer customer){
-        try{
+    public  Message save(Customer customer) throws Exception{
             customerService.save(customer);
-            return "添加成功";
-        }catch(Exception e){
-            e.printStackTrace();
-            return e.getMessage();
-        }
+            return MessageUtil.success("添加成功");
+
     }
     @GetMapping("update")
     @ApiOperation("修改顾客信息")
-    public String update(Customer customer){
-        try{
+    public Message update(Customer customer) throws  Exception{
             customerService.update(customer);
-            return "修改成功";
-        }catch(Exception e){
-            e.printStackTrace();
-            return e.getMessage();
-        }
+            return MessageUtil.success("修改成功");
     }
     @PostMapping("batchDelete")
     @ApiOperation("批量删除顾客信息")
@@ -64,6 +65,4 @@ public class CustomerController {
         customerService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
-
-
 }

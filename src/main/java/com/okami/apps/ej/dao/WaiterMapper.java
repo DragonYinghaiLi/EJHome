@@ -93,4 +93,5 @@ public interface WaiterMapper {
      * @mbg.generated Mon Jun 10 11:24:36 CST 2019
      */
     int updateByPrimaryKey(Waiter record);
+    List<Waiter> query(Waiter waiter);
 }
