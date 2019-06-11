@@ -38,4 +38,28 @@ public class CustomerController {
             return e.getMessage();
         }
     }
+    @GetMapping("save")
+    @ApiOperation("添加信息")
+    public  String save(Customer customer){
+        try{
+            customerService.save(customer);
+            return "添加成功";
+        }catch(Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+    @GetMapping("update")
+    @ApiOperation("修改顾客信息")
+    public String update(Customer customer){
+        try{
+            customerService.update(customer);
+            return "修改成功";
+        }catch(Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
+
 }
