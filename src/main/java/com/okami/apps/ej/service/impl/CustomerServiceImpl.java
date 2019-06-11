@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 顾客
+ */
 @Service
 public class CustomerServiceImpl implements ICustomerService {
  @Resource
@@ -60,6 +63,18 @@ public class CustomerServiceImpl implements ICustomerService {
         if(customer==null){
             throw  new Exception("要删除顾客不存在");
         }else{
+            customerMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    /**
+     * 批量删除
+     * @param ids
+     * @throws Exception
+     */
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
             customerMapper.deleteByPrimaryKey(id);
         }
     }

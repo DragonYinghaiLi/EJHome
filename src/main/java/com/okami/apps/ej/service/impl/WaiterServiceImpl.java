@@ -63,5 +63,15 @@ public class WaiterServiceImpl implements IWaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
-
+    /**
+     * 批量删除
+     * @param ids
+     * @throws Exception
+     */
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            waiterMapper.deleteByPrimaryKey(id);
+        }
+    }
 }
