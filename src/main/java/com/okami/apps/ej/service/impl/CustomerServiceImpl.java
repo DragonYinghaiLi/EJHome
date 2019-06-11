@@ -18,5 +18,5 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<Customer> findAll() {
         CustomerExample example=new CustomerExample();
         return customerMapper.selectByExample(example);
-     }
+      }
 }
