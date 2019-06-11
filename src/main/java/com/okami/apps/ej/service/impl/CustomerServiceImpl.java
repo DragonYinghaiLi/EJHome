@@ -23,6 +23,7 @@ public class CustomerServiceImpl implements ICustomerService {
                     .createCriteria()
                     .andRealnameLike("%"+customer.getRealname()+"%");
         }
+
         if (customer.getTelephone()!=null){
             example
                     .createCriteria()
