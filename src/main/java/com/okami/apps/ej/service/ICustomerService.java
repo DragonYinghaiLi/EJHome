@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ICustomerService {
     List<Customer> findAll();
+    void deleteById(long id) throws Exception;
 }
