@@ -49,8 +49,13 @@ public class CustomerController {
     @GetMapping("save")
     @ApiOperation("添加信息")
     public  Message save(Customer customer) throws Exception{
+        if (customer.getId()==null){
             customerService.save(customer);
             return MessageUtil.success("添加成功");
+        }else{
+            return MessageUtil.success("id已存在");
+        }
+
 
     }
     @GetMapping("update")

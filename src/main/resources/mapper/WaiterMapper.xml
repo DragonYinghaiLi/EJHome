@@ -317,7 +317,7 @@
   </update>
 
   <select id="query" resultType="com.okami.apps.ej.bean.Waiter">
-    select * from sms_user<where>
+    select * from ej_waiter<where>
     <if test="realname != null">
       realname like concat('%',#{realname},'%')
     </if>

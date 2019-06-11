@@ -301,7 +301,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="query" resultType="com.okami.apps.ej.bean.Customer">
-    select * from sms_user<where>
+    select * from ej_customer<where>
     <if test="realname != null">realname like concat('%',#{realname},'%')</if>
     <if test="telephone != null">AND telephone like concat('%',#{telephone},'%')</if>
     <if test="password != null">AND password=#{password}</if>
