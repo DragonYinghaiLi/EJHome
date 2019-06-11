@@ -1,8 +1,9 @@
 package com.okami.apps.ej.dao;
 
+import java.util.List;
+
 import com.okami.apps.ej.bean.Waiter;
 import com.okami.apps.ej.bean.WaiterExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface WaiterMapper {

@@ -231,4 +231,7 @@ public class Waiter {
     public void setPhoto(String photo) {
         this.photo = photo == null ? null : photo.trim();
     }
+
+    public void saveOrUpdate(Waiter waiter) {
+    }
 }
