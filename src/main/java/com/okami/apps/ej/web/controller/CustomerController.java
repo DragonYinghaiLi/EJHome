@@ -24,7 +24,7 @@ public class CustomerController {
         List<Customer> list=customerService.findAll();
         return MessageUtil.success("success",list);
     }
-    @ApiOperation("通过id查询用户信息")
+    @ApiOperation("通过id查询顾客信息")
     @GetMapping("findById")
     public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
         List<Customer> list= (List<Customer>) customerService.findById(id);
