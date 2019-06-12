@@ -93,5 +93,5 @@ public interface CustomerMapper {
      * @mbg.generated Mon Jun 10 11:24:36 CST 2019
      */
     int updateByPrimaryKey(Customer record);
-    List<Customer> query(Customer customer);
+
 }

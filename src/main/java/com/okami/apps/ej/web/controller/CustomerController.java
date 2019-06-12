@@ -46,22 +46,11 @@ public class CustomerController {
             customerService.deleteById(id);
             return MessageUtil.success("删除成功");
     }
-    @GetMapping("save")
-    @ApiOperation("添加信息")
-    public  Message save(Customer customer) throws Exception{
-        if (customer.getId()==null){
-            customerService.save(customer);
-            return MessageUtil.success("添加成功");
-        }else{
-            return MessageUtil.success("id已存在");
-        }
 
-
-    }
-    @GetMapping("update")
-    @ApiOperation("修改顾客信息")
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("添加修改顾客信息")
     public Message update(Customer customer) throws  Exception{
-            customerService.update(customer);
+            customerService.saveOrUpdate(customer);
             return MessageUtil.success("修改成功");
     }
     @PostMapping("batchDelete")

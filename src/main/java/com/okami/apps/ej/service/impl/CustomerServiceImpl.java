@@ -44,21 +44,25 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public List<Customer> query(Customer customer){
-        return customerMapper.query(customer);
-    }
-    /***
-     * 添加顾客
-     * @param customer
-     * @throws Exception
-     */
-    @Override
-    public void save(Customer customer) throws Exception{
-        if(customer.getId()==null){
-            customerMapper.insert(customer);
-        }else{
-            System.out.println("用户已存在");
+    public List<Customer> query(Customer customer) {
+        // 创建空模板
+        CustomerExample example = new CustomerExample();
+        // 在模板中添加条件
+        if(customer.getRealname()!=null){
+            example
+                    .createCriteria()
+                    .andRealnameLike("%"+customer.getRealname()+"%");
         }
+        if(customer.getTelephone()!=null){
+            example
+                    .createCriteria()
+                    .andTelephoneLike("%"+customer.getTelephone()+"%");
+        }
+        if(customer.getPassword()!=null){
+            example.createCriteria().andPasswordEqualTo(customer.getPassword());
+        }
+
+        return customerMapper.selectByExample(example);
     }
 
     /***
@@ -67,9 +71,16 @@ public class CustomerServiceImpl implements ICustomerService {
      * @throws Exception
      */
     @Override
-    public  void update(Customer customer) throws Exception{
-           customerMapper.updateByPrimaryKeySelective(customer);
+    public  void saveOrUpdate(Customer customer) throws Exception{
+        if(customer.getId() == null){
+            // 初始化属性
+            customer.setStatus("正常");
+            customerMapper.insert(customer);
+        } else {
+            customerMapper.updateByPrimaryKey(customer);
+        }
     }
+
 
 
     /***

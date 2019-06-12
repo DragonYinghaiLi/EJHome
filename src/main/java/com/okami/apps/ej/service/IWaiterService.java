@@ -12,7 +12,6 @@ public interface IWaiterService {
     Waiter findById(long id);
     List<Waiter> query(Waiter customer);
     void deleteById(long id) throws Exception;
-    void save(Waiter waiter) throws Exception;
-    void update(Waiter waiter) throws Exception;
+    void saveOrUpdate(Waiter waiter) throws Exception;
     void batchDelete(long[] ids) throws Exception;
 }

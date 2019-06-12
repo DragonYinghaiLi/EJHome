@@ -43,18 +43,11 @@ public class WaiterController {
             waiterService.deleteById(id);
             return MessageUtil.success("删除成功") ;
     }
-    @GetMapping("save")
-    @ApiOperation("添加服务员信息")
-    public  Message save(Waiter waiter) throws  Exception{
-            waiterService.save(waiter);
-            return MessageUtil.success ("添加成功");
-    }
-
-    @GetMapping("update")
-    @ApiOperation("修改服务员信息")
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("添加修改服务员信息")
     public Message update(Waiter waiter) throws  Exception{
-            waiterService.update(waiter);
-            return MessageUtil.success ("修改成功");
+        waiterService.saveOrUpdate(waiter);
+        return MessageUtil.success("修改成功");
     }
     @PostMapping("batchDelete")
     @ApiOperation("批量删除服务员信息")

@@ -300,14 +300,4 @@
       photo = #{photo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="query" resultType="com.okami.apps.ej.bean.Customer">
-    select * from ej_customer<where>
-    <if test="realname != null">realname like concat('%',#{realname},'%')</if>
-    <if test="telephone != null">AND telephone like concat('%',#{telephone},'%')</if>
-    <if test="password != null">AND password=#{password}</if>
-    <if test="status != null">AND status=#{status}</if>
-    <if test="photo != null">AND photo=#{photo}</if>
-
-  </where>
-  </select>
 </mapper>

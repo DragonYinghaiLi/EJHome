@@ -49,24 +49,17 @@ public class WaiterServiceImpl implements IWaiterService {
      * @param waiter
      * @throws Exception
      */
-    @Override
-    public void save(Waiter waiter) throws Exception{
-        if(waiter.getId()==null){
+  @Override
+    public void saveOrUpdate(Waiter waiter) throws Exception{
+        if(waiter.getId() == null){
+            // 初始化属性
+            waiter.setStatus("正常");
             waiterMapper.insert(waiter);
-        }else{
-            System.out.println("服务员已存在");
+        } else {
+            waiterMapper.updateByPrimaryKey(waiter);
         }
     }
 
-    /***
-     * 修改操作
-     * @param waiter
-     * @throws Exception
-     */
-    @Override
-    public  void update(Waiter waiter) throws Exception{
-        waiterMapper.updateByPrimaryKeySelective(waiter);
-    }
 
 
     /***
