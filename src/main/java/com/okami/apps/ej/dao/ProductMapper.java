@@ -3,6 +3,8 @@ package com.okami.apps.ej.dao;
 import com.okami.apps.ej.bean.Product;
 import com.okami.apps.ej.bean.ProductExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ProductMapper {
@@ -93,4 +95,7 @@ public interface ProductMapper {
      * @mbg.generated Mon Jun 10 11:24:36 CST 2019
      */
     int updateByPrimaryKey(Product record);
+    void batchInsert(List<Product> products);
+
+    void  batchUpdateStatusWithMap(Map<String,Object> map);
 }

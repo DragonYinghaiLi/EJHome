@@ -17,42 +17,66 @@ import java.util.List;
 public class WaiterController {
 @Autowired
     private IWaiterService waiterService;
-    @GetMapping("findAll")
+    @GetMapping("findAllWaiter")
     @ApiOperation("查询服务员信息")
-    public Message findAll(){
-        List<Waiter> list=waiterService.findAll();
+    public Message findAllWaiter(){
+        List<Waiter> list=waiterService.findAllWaiter();
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("通过id查询用户信息")
-    @GetMapping("findById")
-    public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
-        List<Waiter> list= (List<Waiter>) waiterService.findById(id);
+    @ApiOperation("通过id查询服务员信息")
+    @GetMapping("findWaiterById")
+    public  Message findWaiterById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
+        List<Waiter> list= (List<Waiter>) waiterService.findWaiterById(id);
         return MessageUtil.success("查询成功",list);
 
     }
     @ApiOperation("模糊查询")
-    @GetMapping("query")
-    public Message query(Waiter waiter){
-        List<Waiter> list=waiterService.query(waiter);
+    @GetMapping("queryWaiter")
+    public Message queryWaiter(Waiter waiter){
+        List<Waiter> list=waiterService.queryWaiter(waiter);
         return MessageUtil.success("success",list);
     }
-    @GetMapping("deleteById")
+    @GetMapping("deleteWaiterById")
     @ApiOperation("通过id删除服务员信息")
-    public Message deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{
-            waiterService.deleteById(id);
+    public Message deleteWaiterById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{
+            waiterService.deleteWaiterById(id);
             return MessageUtil.success("删除成功") ;
     }
-    @PostMapping("saveOrUpdate")
-    @ApiOperation("添加修改服务员信息")
-    public Message update(Waiter waiter) throws  Exception{
-        waiterService.saveOrUpdate(waiter);
-        return MessageUtil.success("修改成功");
+
+    @ApiOperation("添加服务员")
+    @PostMapping("insertWaiter")
+    public Message insertWaiter(Waiter waiter) throws Exception {
+        waiter.setStatus("1");
+        waiterService.insertWaiter(waiter);
+        return MessageUtil.success("添加服务员成功！");
     }
-    @PostMapping("batchDelete")
+
+    @ApiOperation("批量添加产品")
+    @PostMapping("insertBathWaiter")
+    public Message insertBathWaiter(
+            @ApiParam(value = "批量添加产品",required = true)
+            @RequestBody List<Waiter> waiter) {
+        try {
+            waiterService.insertBathWaiter(waiter);
+            return MessageUtil.success("添加产品成功！");
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("添加产品失败！"+e.getMessage());
+        }
+    }
+
+    @ApiOperation("修改服务员")
+    @PostMapping("updateWaiter")
+    public Message updateWaiter(Waiter waiter) throws  Exception{
+        waiterService.updateWaiter(waiter);
+        return MessageUtil.success("更新产品成功！");
+    }
+
+    @PostMapping("batchDeleteWaiter")
     @ApiOperation("批量删除服务员信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
-        waiterService.batchDelete(ids);
+    public Message batchDeleteWaiter(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        waiterService.batchDeleteWaiter(ids);
         return MessageUtil.success("批量删除成功");
     }
 }

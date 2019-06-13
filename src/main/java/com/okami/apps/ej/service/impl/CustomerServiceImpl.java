@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> findCustomerAll() {
         CustomerExample example=new CustomerExample();
         return customerMapper.selectByExample(example);
     }
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public Customer findById(long id) {
+    public Customer findCustomerById(long id) {
         //调用dao层代码完成操作
         return customerMapper.selectByPrimaryKey(id);
     }
@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public List<Customer> query(Customer customer) {
+    public List<Customer> queryCustomer(Customer customer) {
         // 创建空模板
         CustomerExample example = new CustomerExample();
         // 在模板中添加条件
@@ -71,8 +71,9 @@ public class CustomerServiceImpl implements ICustomerService {
      * @throws Exception
      */
     @Override
-    public  void saveOrUpdate(Customer customer) throws Exception{
-        if(customer.getId() == null){
+    public  void saveCustomerOrUpdateCustomer(Customer customer) throws Exception{
+        Customer customer1=customerMapper.selectByPrimaryKey(customer.getId());
+        if(customer1 == null){
             // 初始化属性
             customer.setStatus("正常");
             customerMapper.insert(customer);
@@ -89,7 +90,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @throws Exception
      */
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteCustomerById(long id) throws Exception {
         Customer customer=customerMapper.selectByPrimaryKey(id);
         if(customer==null){
             throw  new Exception("要删除顾客不存在");
@@ -104,7 +105,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @throws Exception
      */
     @Override
-    public void batchDelete(long[] ids) throws Exception {
+    public void batchDeleteCustomer(long[] ids) throws Exception {
         for(long id :ids){
             customerMapper.deleteByPrimaryKey(id);
         }

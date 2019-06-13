@@ -331,4 +331,11 @@
     <if test="status != null">AND status=#{status}</if>
   </where>
   </select>
+
+  <insert id="batchInsert">
+    insert  into ej_waiter(telephone,password,realname,idcard,status,photo) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.telephone},#{item.password},#{item.realname},#{item.idcard},"正常"，#{item.photo,jdbcType=BIGINT})
+    </foreach>
+  </insert>
 </mapper>

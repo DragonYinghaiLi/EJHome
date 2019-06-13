@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/***
+ * 服务员接口方法实现
+ */
 @Service
 public class WaiterServiceImpl implements IWaiterService {
     @Resource
@@ -19,7 +22,7 @@ public class WaiterServiceImpl implements IWaiterService {
      * @return
      */
     @Override
-    public List<Waiter> findAll() {
+    public List<Waiter> findAllWaiter() {
         WaiterExample example=new WaiterExample();
         return waiterMapper.selectByExample(example);
     }
@@ -30,7 +33,7 @@ public class WaiterServiceImpl implements IWaiterService {
      * @return
      */
     @Override
-    public Waiter findById(long id) {
+    public Waiter findWaiterById(long id) {
         //调用dao层代码完成操作
         return waiterMapper.selectByPrimaryKey(id);
     }
@@ -41,25 +44,37 @@ public class WaiterServiceImpl implements IWaiterService {
      * @return
      */
     @Override
-    public List<Waiter> query(Waiter waiter){
+    public List<Waiter> queryWaiter(Waiter waiter){
         return waiterMapper.query(waiter);
     }
-    /***
-     * 添加服务员
+    /**
+     * 插入服务员
      * @param waiter
      * @throws Exception
      */
-  @Override
-    public void saveOrUpdate(Waiter waiter) throws Exception{
-        if(waiter.getId() == null){
-            // 初始化属性
-            waiter.setStatus("正常");
-            waiterMapper.insert(waiter);
-        } else {
-            waiterMapper.updateByPrimaryKey(waiter);
-        }
+    @Override
+    public void insertWaiter(Waiter waiter) throws  Exception{
+        waiterMapper.insertSelective(waiter);
     }
 
+    /***
+     * 批量插入服务员
+     * @param waiter
+     * @throws Exception
+     */
+    @Override
+    public void insertBathWaiter(List<Waiter> waiter)  throws  Exception{
+        waiterMapper.batchInsert(waiter);
+    }
+
+    /***
+     * 修改服务员
+     * @param waiter
+     */
+    @Override
+    public void updateWaiter(Waiter waiter) {
+        waiterMapper.updateByPrimaryKeySelective(waiter);
+    }
 
 
     /***
@@ -68,7 +83,7 @@ public class WaiterServiceImpl implements IWaiterService {
      * @throws Exception
      */
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteWaiterById(long id) throws Exception {
         Waiter customer=waiterMapper.selectByPrimaryKey(id);
         if(customer==null){
             throw  new Exception("要删除服务员不存在");
@@ -82,7 +97,7 @@ public class WaiterServiceImpl implements IWaiterService {
      * @throws Exception
      */
     @Override
-    public void batchDelete(long[] ids) throws Exception {
+    public void batchDeleteWaiter(long[] ids) throws Exception {
         for(long id :ids){
             waiterMapper.deleteByPrimaryKey(id);
         }

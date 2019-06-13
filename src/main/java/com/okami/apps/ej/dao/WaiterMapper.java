@@ -94,4 +94,5 @@ public interface WaiterMapper {
      */
     int updateByPrimaryKey(Waiter record);
     List<Waiter> query(Waiter waiter);
+    void batchInsert(List<Waiter> waiter);
 }
