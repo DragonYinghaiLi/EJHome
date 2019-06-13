@@ -2,6 +2,7 @@ package com.okami.apps.ej.web.controller;
 
 import com.okami.apps.ej.bean.Order;
 import com.okami.apps.ej.bean.extend.OrderExtend;
+import com.okami.apps.ej.bean.vm.OrderAndOrderLineVM;
 import com.okami.apps.ej.service.IOrderService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
@@ -59,7 +60,7 @@ public class OrderController {
 
     @ApiOperation("增加分类")
     @PostMapping("insertOrder")
-    public Message insertOrder(@Validated@ModelAttribute Order order) throws Exception {
+    public Message insertOrder(@Validated@ModelAttribute OrderAndOrderLineVM order) throws Exception {
         orderService.insertOrder(order);
         return MessageUtil.success("增加新的分类成功!");
     }

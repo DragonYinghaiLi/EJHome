@@ -1,6 +1,10 @@
 package com.okami.apps.ej.service.impl;
 
+import com.okami.apps.ej.bean.OrderLine;
 import com.okami.apps.ej.bean.extend.OrderExtend;
+import com.okami.apps.ej.bean.vm.OrderAndOrderLineVM;
+import com.okami.apps.ej.bean.vm.OrderVM;
+import com.okami.apps.ej.dao.OrderLineMapper;
 import com.okami.apps.ej.dao.extend.OrderExtendMapper;
 import com.okami.apps.ej.service.IOrderService;
 import com.okami.apps.ej.bean.Order;
@@ -21,7 +25,14 @@ public class OrderServiceImpl implements IOrderService {
     private OrderMapper orderMapper;
     @Resource
     private OrderExtendMapper orderExtendMapper;
+    @Resource
+    private OrderLineMapper orderLineMapper;
 
+    @Override
+    public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
+        return orderExtendMapper.queryBasic(customerId, waiterId);
+    }
+    
     /***
      * 查询全部
      * @return
@@ -89,14 +100,20 @@ public class OrderServiceImpl implements IOrderService {
      * @throws Exception
      */
     @Override
-    public void insertOrder(Order order) throws Exception {
-        Order orderLine1=orderMapper.selectByPrimaryKey(order.getId());
-        if(orderLine1==null){
-            long time = new Date().getTime();
-            order.setOrderTime(time);
-            orderMapper.insert(order);
-        }else{
-            throw new Exception("id已存在");
+    public void insertOrder(OrderAndOrderLineVM order) throws Exception {
+        //先保存订单
+        Order o = new Order();
+        o.setOrderTime(new Date().getTime());
+        o.setTotal(100.0);
+        o.setCustomerId(order.getCustomerId());
+        o.setAddressId(order.getAddressId());
+        orderMapper.insert(o);
+        // 再保存订单项
+        List<OrderLine> list = order.getOrderLines();
+        for(OrderLine ol : list){
+            // 维护订单项与订单之间的关系
+            ol.setOrderId(o.getId());
+            orderLineMapper.insert(ol);
         }
 
     }
