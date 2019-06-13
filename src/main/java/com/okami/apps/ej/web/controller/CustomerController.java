@@ -17,7 +17,12 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
-
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Customer customer){
+        List<Customer> list=customerService.query(customer);
+        return MessageUtil.success("success",list);
+    }
     @GetMapping("findAll")
     @ApiOperation("查询所有顾客信息")
     public Message findAll(){
@@ -31,33 +36,23 @@ public class CustomerController {
         return MessageUtil.success("查询成功",list);
 
     }
-    @ApiOperation("模糊查询")
-    @GetMapping("query")
-    public Message query(Customer customer){
-        List<Customer> list=customerService.query(customer);
-        return MessageUtil.success("success",list);
+
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("保存或者更新顾客信息")
+    public Message saveOrUpdate(Customer customer) throws Exception{
+        customerService.saveOrUpdate(customer);
+        return MessageUtil.success("操作成功");
     }
-    
+
     @GetMapping("deleteById")
     @ApiOperation("通过id删除顾客信息")
-    public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
+    public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws Exception{
         try{
             customerService.deleteById(id);
             return "删除成功";
         }catch(Exception e){
             e.printStackTrace();
             return e.getMessage();
-        }
-    }
-    @ApiOperation("保存或更新顾客信息")
-    @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Customer customer){
-        try {
-            customerService.saveOrUpdate(customer);
-            return MessageUtil.success("保存成功!");
-        }catch (Exception e){
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
         }
     }
     @PostMapping("batchDelete")

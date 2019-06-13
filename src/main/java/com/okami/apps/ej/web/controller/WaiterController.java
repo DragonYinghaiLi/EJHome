@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/waiter")
 public class WaiterController {
@@ -25,7 +26,7 @@ public class WaiterController {
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("通过id查询用户信息")
+    @ApiOperation("通过id查询服务员信息")
     @GetMapping("findById")
     public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
         List<Waiter> list= (List<Waiter>) waiterService.findById(id);
@@ -39,7 +40,7 @@ public class WaiterController {
         return MessageUtil.success("success",list);
     }
     @GetMapping("deleteById")
-    @ApiOperation("通过id删除顾客信息")
+    @ApiOperation("通过id删除服务员信息")
     public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
         try{
             waiterService.deleteById(id);
@@ -49,8 +50,9 @@ public class WaiterController {
             return e.getMessage();
         }
     }
-    @ApiOperation("保存或更新顾客信息")
-    @PostMapping("saveOrUpdate")
+
+    @GetMapping("saveOrUpdate")
+    @ApiOperation("保存或更新服务员信息")
     public Message saveOrUpdate(Waiter waiter){
         try {
             waiterService.saveOrUpdate(waiter);

@@ -9,9 +9,8 @@ import java.util.List;
  */
 public interface IProductService {
     List<Product> findAll();
-
     Product findById(long id);
-    List<Product> query(Product waiter);
+    List<Product> query(Product product);
     void deleteById(long id) throws Exception;
     void saveOrUpdate(Product product) throws Exception;
     void batchDelete(long[] ids) throws Exception;

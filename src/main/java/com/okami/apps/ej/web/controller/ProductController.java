@@ -35,8 +35,8 @@ public class ProductController {
     }
     @ApiOperation("模糊查询")
     @GetMapping("query")
-    public Message query(Product waiter){
-        List<Product> list=productService.query(waiter);
+    public Message query(Product product){
+        List<Product> list=productService.query(product);
         return MessageUtil.success("success",list);
     }
     @GetMapping("deleteById")
@@ -51,7 +51,7 @@ public class ProductController {
         }
     }
     @ApiOperation("保存或更新顾客信息")
-    @PostMapping("saveOrUpdate")
+    @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(Product product){
         try {
             productService.saveOrUpdate(product);

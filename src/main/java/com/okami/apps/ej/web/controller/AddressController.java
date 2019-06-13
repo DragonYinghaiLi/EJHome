@@ -45,7 +45,7 @@ public class AddressController {
         return MessageUtil.success("删除成功") ;
     }
     @ApiOperation("保存或更新顾客信息")
-    @PostMapping("saveOrUpdate")
+    @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(Address address){
         try {
             addressService.saveOrUpdate(address);

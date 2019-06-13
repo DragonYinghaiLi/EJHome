@@ -268,4 +268,5 @@
       order_id = #{orderId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <select id="query" resultMap="BaseResultMap"></select>
 </mapper>
