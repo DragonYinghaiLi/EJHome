@@ -27,11 +27,20 @@ public class MessageUtil {
         message.setTimestamp(new Date().getTime());
         return message;
     }
-
+    /**
+     *返回失败消息
+     */
+    public static Message error( String msg){
+        Message message=new Message();
+        message.setStatus(500);
+        message.setMessage(msg);
+        message.setTimestamp(new Date().getTime());
+        return message;
+    }
     /**
      * 返回失败消息
      */
-    public static Message error(String msg ){
+    public static Message error(Integer code, String msg){
         Message message=new Message();
         message.setStatus(500);
         message.setMessage(msg);
