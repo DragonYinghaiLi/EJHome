@@ -4,6 +4,7 @@ import com.okami.apps.ej.bean.Waiter;
 import com.okami.apps.ej.service.IWaiterService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/waiter")
+@Api(description = "服务员管理相关接口")
 public class WaiterController {
 @Autowired
     private IWaiterService waiterService;
@@ -52,17 +54,17 @@ public class WaiterController {
         return MessageUtil.success("添加服务员成功！");
     }
 
-    @ApiOperation("批量添加产品")
+    @ApiOperation("批量添加服务员")
     @PostMapping("insertBathWaiter")
     public Message insertBathWaiter(
-            @ApiParam(value = "批量添加产品",required = true)
+            @ApiParam(value = "批量添加服务员",required = true)
             @RequestBody List<Waiter> waiter) {
         try {
             waiterService.insertBathWaiter(waiter);
-            return MessageUtil.success("添加产品成功！");
+            return MessageUtil.success("添加服务员成功！");
         }catch (Exception e){
             e.getStackTrace();
-            return MessageUtil.error("添加产品失败！"+e.getMessage());
+            return MessageUtil.error("添加服务员失败！"+e.getMessage());
         }
     }
 

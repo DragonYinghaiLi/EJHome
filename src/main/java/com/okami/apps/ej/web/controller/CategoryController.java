@@ -5,6 +5,7 @@ import com.okami.apps.ej.bean.Category;
 import com.okami.apps.ej.service.ICategoryService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
 /***
  * 分类管理控制器
  */
+@Api(description = "分类管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/category")

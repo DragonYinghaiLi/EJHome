@@ -4,6 +4,7 @@ import com.okami.apps.ej.bean.Product;
 import com.okami.apps.ej.service.IProductService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/product")
+@Api(description = "产品管理相关接口")
 public class ProductController {
     @Autowired
     private  IProductService productService;

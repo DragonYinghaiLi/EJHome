@@ -22,7 +22,7 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 11:24:36 CST 2019
      */
-    @ApiParam(value = "手机号")
+    @ApiParam(value = "手机号",required = true)
     @NotBlank(message = "手机号不能为空")
     private String telephone;
 

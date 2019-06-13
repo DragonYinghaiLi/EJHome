@@ -2,7 +2,9 @@ package com.okami.apps.ej.service.impl;
 
 import com.okami.apps.ej.bean.OrderLine;
 import com.okami.apps.ej.bean.OrderLineExample;
+import com.okami.apps.ej.bean.extend.OrderExtend;
 import com.okami.apps.ej.dao.OrderLineMapper;
+import com.okami.apps.ej.dao.extend.OrderExtendMapper;
 import com.okami.apps.ej.service.IOrderLineService;
 
 import java.util.List;
@@ -19,8 +21,11 @@ import java.util.List;
 public class OrderLineServiceImpl implements IOrderLineService {
     @Resource
     private OrderLineMapper orderLineMapper;
+    @Resource
+    private OrderExtendMapper orderExtendMapper;
 
-    /**
+
+    /*
      * 查询全部
      * @return
      */
@@ -77,6 +82,7 @@ public class OrderLineServiceImpl implements IOrderLineService {
     public void insertOrderLine(OrderLine orderLine) throws Exception {
         OrderLine orderLine1=orderLineMapper.selectByPrimaryKey(orderLine.getId());
         if(orderLine1==null){
+
             orderLineMapper.insert(orderLine);
         }else{
             throw new Exception("id已存在");

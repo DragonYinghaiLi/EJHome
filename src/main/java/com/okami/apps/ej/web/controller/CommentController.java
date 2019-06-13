@@ -5,6 +5,7 @@ import com.okami.apps.ej.bean.Comment;
 import com.okami.apps.ej.service.ICommentService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * 订单评价控制类
  */
-
+@Api(description = "订单评价相关接口")
 @RestController
 @RequestMapping("/comment")
 public class CommentController {

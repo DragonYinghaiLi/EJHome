@@ -1,5 +1,7 @@
 package com.okami.apps.ej.service.impl;
 
+import com.okami.apps.ej.bean.extend.OrderExtend;
+import com.okami.apps.ej.dao.extend.OrderExtendMapper;
 import com.okami.apps.ej.service.IOrderService;
 import com.okami.apps.ej.bean.Order;
 import com.okami.apps.ej.bean.OrderExample;
@@ -7,6 +9,7 @@ import com.okami.apps.ej.dao.OrderMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /***
@@ -16,6 +19,8 @@ import java.util.List;
 public class OrderServiceImpl implements IOrderService {
     @Resource
     private OrderMapper orderMapper;
+    @Resource
+    private OrderExtendMapper orderExtendMapper;
 
     /***
      * 查询全部
@@ -27,6 +32,14 @@ public class OrderServiceImpl implements IOrderService {
         OrderExample example = new OrderExample();
         return orderMapper.selectByExample(example);
     }
+    /***
+     * 关联查询
+     */
+    @Override
+    public List<OrderExtend> query(Long customerId, Long waiterId) {
+        return orderExtendMapper.query(customerId,waiterId);
+    }
+    /**
 
     /***
      * 根据id查询
@@ -79,6 +92,8 @@ public class OrderServiceImpl implements IOrderService {
     public void insertOrder(Order order) throws Exception {
         Order orderLine1=orderMapper.selectByPrimaryKey(order.getId());
         if(orderLine1==null){
+            long time = new Date().getTime();
+            order.setOrderTime(time);
             orderMapper.insert(order);
         }else{
             throw new Exception("id已存在");

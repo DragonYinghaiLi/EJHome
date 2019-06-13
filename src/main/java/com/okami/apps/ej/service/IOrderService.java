@@ -1,6 +1,7 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Order;
+import com.okami.apps.ej.bean.extend.OrderExtend;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public interface IOrderService {
     List<Order> findAllOrder();
     //模糊查询
     List<Order> queryOrder(Order order);
+    //关联查询
+    List<OrderExtend> query(Long customerId, Long waiterId);
     //根据id查询
     Order findOrderById(long id);
     //插入新的订单项

@@ -4,6 +4,7 @@ import com.okami.apps.ej.bean.OrderLine;
 import com.okami.apps.ej.service.IOrderLineService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/orderLine")
+@Api(description = "订单项管理相关接口")
 public class OrderLineController {
     @Autowired
     private IOrderLineService orderLineService;

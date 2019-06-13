@@ -4,6 +4,7 @@ import com.okami.apps.ej.bean.Customer;
 import com.okami.apps.ej.service.ICustomerService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/customer")
+@Api(description = "顾客管理相关接口")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;

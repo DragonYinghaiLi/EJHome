@@ -4,6 +4,7 @@ import com.okami.apps.ej.bean.Address;
 import com.okami.apps.ej.service.IAddressService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 /***
  * 地址管理控制器
  */
+@Api(description = "地址管理相关接口")
 @RestController
 @RequestMapping("/address")
 public class AddressController {
