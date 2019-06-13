@@ -37,9 +37,7 @@ public class CustomerController {
         List<Customer> list=customerService.query(customer);
         return MessageUtil.success("success",list);
     }
-
-
-
+    
     @GetMapping("deleteById")
     @ApiOperation("通过id删除顾客信息")
     public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
