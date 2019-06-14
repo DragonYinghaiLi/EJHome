@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+
     @Autowired
     private IOrderService orderService;
 
@@ -24,18 +25,21 @@ public class OrderController {
         List<Order> list = orderService.findAll();
         return MessageUtil.success("success",list);
     }
+
     @ApiOperation("通过id查询订单信息")
     @GetMapping("findById")
     public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
         List<Order> list= (List<Order>) orderService.findById(id);
         return MessageUtil.success("查询成功",list);
     }
+
     @ApiOperation("模糊查询")
     @GetMapping("query")
     public Message query(Order order){
         List<Order> list=orderService.query(order);
         return MessageUtil.success("success",list);
     }
+
     @GetMapping("deleteById")
     @ApiOperation("通过id删除订单信息")
     public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
@@ -47,6 +51,7 @@ public class OrderController {
             return e.getMessage();
         }
     }
+
     @ApiOperation("保存或更新订单信息")
     @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(Order order){
@@ -58,6 +63,7 @@ public class OrderController {
             return MessageUtil.error(e.getMessage());
         }
     }
+
     @PostMapping("batchDelete")
     @ApiOperation("批量删除订单信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
