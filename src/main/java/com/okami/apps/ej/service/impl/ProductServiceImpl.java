@@ -35,6 +35,22 @@ public class ProductServiceImpl  implements IProductService {
     }
 
     /***
+     * 根据产品名称查询产品信息
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    public List<Product> findProductByName(String name)throws Exception{
+        ProductExample  productExample=new ProductExample();
+        productExample.createCriteria().andNameLike("%"+name+"%");
+        List<Product> productList= productMapper.selectByExample(productExample);
+        if(productList.size()==0){
+            throw new Exception("产品未查到，请新建产品!");
+        }else {
+            return productList;
+        }
+    }
+    /***
      * 分页查询
      * @param currentPage
      * @return

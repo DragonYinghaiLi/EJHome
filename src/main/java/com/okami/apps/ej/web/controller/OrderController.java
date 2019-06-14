@@ -79,7 +79,7 @@ public class OrderController {
     }
 
     @ApiOperation("通过id删除订单信息")
-    @GetMapping("deleteOrderById")
+    @PostMapping("deleteOrderById")
     public Message deleteOrderById(@ApiParam(value = "主键",required = true) @RequestParam("id") @NotNull long id){
         try {
             orderService.deleteOrderById(id);

@@ -63,7 +63,20 @@ public class ProductController {
             return MessageUtil.success("查询当前页的上线产品成功！", categoryProduct);
         }
     }
+    @ApiOperation("根据产品名称查询")
+    @GetMapping("findProductByName")
+    public  Message findProductByName(
+            @ApiParam(value = "查询产品名",required = true)
+            @RequestParam("name") String  name) throws Exception{
+        try{
+            List<Product> products=productService.findProductByName(name);
+            return MessageUtil.success("上线产品数",products);
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error(e.getMessage());
 
+        }
+    }
     @ApiOperation("添加产品")
     @PostMapping("insertProduct")
     public Message insertProduct(Product product) throws Exception {
@@ -94,7 +107,7 @@ public class ProductController {
     }
 
     @ApiOperation("批量更新产品")
-    @GetMapping("UpdateBatchProductStatus")
+    @PostMapping("UpdateBatchProductStatus")
     public Message UpdateBatchProductStatus(
             @ApiParam(value = "批量更新产品",required = true)
             @RequestParam("status") String status,
@@ -116,7 +129,7 @@ public class ProductController {
     }
 
     @ApiOperation("删除产品")
-    @GetMapping("deleteProductById")
+    @PostMapping("deleteProductById")
     public Message deleteProductById(
             @ApiParam(value = "主键",required = true)
             @RequestParam("id") Long id)throws Exception{
@@ -130,7 +143,7 @@ public class ProductController {
     }
 
     @ApiOperation("批量删除产品")
-    @GetMapping("deleteBathProduct")
+    @PostMapping("deleteBathProduct")
     public Message deleteBathProduct(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "idList") List<Long> idList){

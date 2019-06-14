@@ -38,7 +38,7 @@ public class AddressController {
 
     }
 
-    @GetMapping("deleteAddressById")
+    @PostMapping("deleteAddressById")
     @ApiOperation("通过id删除地址信息")
     public Message deleteAddressById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{
         addressService.deleteAddressById(id);

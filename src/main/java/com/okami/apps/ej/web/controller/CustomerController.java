@@ -51,7 +51,7 @@ public class CustomerController {
         return MessageUtil.success("修改成功");
     }
 
-    @GetMapping("deleteCustomerById")
+    @PostMapping("deleteCustomerById")
     @ApiOperation("通过id删除顾客信息")
     public Message deleteCustomerById(@NotNull @RequestParam("id")long id) throws Exception {
 

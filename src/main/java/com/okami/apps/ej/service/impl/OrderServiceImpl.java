@@ -32,7 +32,7 @@ public class OrderServiceImpl implements IOrderService {
     public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
         return orderExtendMapper.queryBasic(customerId, waiterId);
     }
-    
+
     /***
      * 查询全部
      * @return

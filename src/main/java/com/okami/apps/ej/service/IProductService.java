@@ -15,6 +15,9 @@ public interface IProductService {
     //根据页号进行分页查询
      List<Product> findProductByPage(int currentPage);
 
+    //根据产品名称查询产品信息
+    public List<Product> findProductByName(String name)throws Exception;
+
     //根据分类id查询该分类下的所有产品
      List<Product> findProductByCategoryId(Long category_id);
 

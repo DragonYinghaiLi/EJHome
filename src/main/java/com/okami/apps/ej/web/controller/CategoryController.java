@@ -42,7 +42,7 @@ public class CategoryController {
     }
 
     @ApiOperation("根据Id删除分类信息")
-    @GetMapping("deleteByCategoryId")
+    @PostMapping("deleteByCategoryId")
     public Message deleteByCategoryId(@NotNull @RequestParam("id") long id) throws Exception {
         categoryService.deleteCategoryById(id);
         return MessageUtil.success("删除分类成功！");

@@ -60,7 +60,7 @@ public class OrderLineController {
     }
 
     @ApiOperation("通过id删除订单项信息")
-    @GetMapping("deleteOrderLineById")
+    @PostMapping("deleteOrderLineById")
     public Message deleteOrderLineById(@ApiParam(value = "主键",required = true) @RequestParam("id") @NotNull long id){
         try {
             orderLineService.deleteOrderLineById(id);
