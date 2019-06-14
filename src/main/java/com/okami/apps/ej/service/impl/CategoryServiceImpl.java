@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public void deleteById(long id) throws Exception {
         Category category=categoryMapper.selectByPrimaryKey(id);
         if(category==null){
-            throw  new Exception("要删除顾客不存在");
+            throw  new Exception("要删除的种类不存在");
         }else{
             categoryMapper.deleteByPrimaryKey(id);
         }
