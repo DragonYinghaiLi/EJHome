@@ -32,7 +32,12 @@ public class ProductController {
         List<Product> allProduct=productService.findAllProduct();
         return  MessageUtil.success("查询全部上线产品成功",allProduct);
     }
-
+    @ApiOperation("模糊查询")
+    @GetMapping("queryCustomer")
+    public Message queryCustomer(Product product){
+        List<Product> list=productService.queryCustomer(product);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("分页查询上线产品")
     @GetMapping("findProductByPage")
     public Message findProductByPage(

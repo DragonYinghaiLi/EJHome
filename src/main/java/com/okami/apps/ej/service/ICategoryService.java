@@ -14,6 +14,8 @@ public interface ICategoryService {
     //根据id查询分类
     Category findCategoryById(long id);
 
+    //模糊查询
+    List<Category> queryCustomer(Category category);
     //根据id删除分类
     void deleteCategoryById(long id) throws Exception;
     //插入新的分类

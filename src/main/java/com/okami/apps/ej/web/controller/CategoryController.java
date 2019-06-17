@@ -33,15 +33,20 @@ public class CategoryController {
         List<Category> list = categoryService.findAllCategory();
         return MessageUtil.success("message", list);
     }
-
-    @ApiOperation("根据Id查找分类信息")
+    @ApiOperation("模糊查询")
+    @GetMapping("queryCustomer")
+    public Message queryCustomer(Category category){
+        List<Category> list=categoryService.queryCustomer(category);
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("根据id查找分类信息")
     @GetMapping("findByCategoryId")
     public Message findByCategoryId(@ApiParam(value = "主键",required =true)@RequestParam(value ="id")long id) {
         Category category = categoryService.findCategoryById(id);
         return MessageUtil.success("success", category);
     }
 
-    @ApiOperation("根据Id删除分类信息")
+    @ApiOperation("根据id删除分类信息")
     @PostMapping("deleteByCategoryId")
     public Message deleteByCategoryId(@NotNull @RequestParam("id") long id) throws Exception {
         categoryService.deleteCategoryById(id);

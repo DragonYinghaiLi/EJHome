@@ -21,6 +21,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:24:36 CST 2019
      */
+    @ApiParam(value = "姓名",required = true)
     @NotBlank(message = "产品名称不能为空")
     private String name;
 

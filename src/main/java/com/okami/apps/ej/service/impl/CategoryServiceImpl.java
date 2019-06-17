@@ -25,7 +25,23 @@ public class CategoryServiceImpl implements ICategoryService {
         CategoryExample example=new CategoryExample();
         return categoryMapper.selectByExample(example);
     }
-
+    /**
+     * 模糊查询
+     * @param category
+     * @return
+     */
+    @Override
+    public List<Category> queryCustomer(Category category) {
+        // 创建空模板
+        CategoryExample example = new CategoryExample();
+        // 在模板中添加条件
+        if(category.getName()!=null){
+            example
+                    .createCriteria()
+                    .andNameLike("%"+category.getName()+"%");
+        }
+        return categoryMapper.selectByExample(example);
+    }
     /***
      * 根据id查询分类
      * @param id

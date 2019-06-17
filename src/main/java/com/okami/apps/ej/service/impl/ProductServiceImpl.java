@@ -50,6 +50,30 @@ public class ProductServiceImpl  implements IProductService {
             return productList;
         }
     }
+
+
+    /**
+     * 模糊查询
+     * @param product
+     * @return
+     */
+    @Override
+    public List<Product> queryCustomer(Product product) {
+        // 创建空模板
+        ProductExample example = new ProductExample();
+        // 在模板中添加条件
+        if(product.getName()!=null){
+            example
+                    .createCriteria()
+                    .andNameLike("%"+product.getName()+"%");
+        }
+        if(product.getDescription()!=null){
+            example
+                    .createCriteria()
+                    .andDescriptionLike("%"+product.getDescription()+"%");
+        }
+        return productMapper.selectByExample(example);
+    }
     /***
      * 分页查询
      * @param currentPage
