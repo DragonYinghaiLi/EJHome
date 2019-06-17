@@ -1,15 +1,25 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Order;
+import com.okami.apps.ej.bean.extend.OrderExtend;
+import com.okami.apps.ej.bean.vm.OrderAndOrderLineVM;
+import com.okami.apps.ej.bean.vm.OrderVM;
 
 import java.util.List;
 
 public interface IOrderService {
 
+    List<OrderVM> queryBasic(Long customerId, Long waiterId);
+
+    List<OrderExtend> query(Long customerId,Long waiterId);
+
     List<Order> findAll();
-    Order findById(long id);
-    List<Order> query(Order order);
+
+    void save(OrderAndOrderLineVM order) throws Exception;
+
     void deleteById(long id) throws Exception;
-    void saveOrUpdate(Order order) throws Exception;
+
     void batchDelete(long[] ids) throws Exception;
+
+
 }

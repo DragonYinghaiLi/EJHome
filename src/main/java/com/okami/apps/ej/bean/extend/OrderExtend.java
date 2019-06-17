@@ -1,9 +1,8 @@
 package com.okami.apps.ej.bean.extend;
 
-import com.okami.apps.ej.bean.Address;
-import com.okami.apps.ej.bean.Customer;
-import com.okami.apps.ej.bean.Order;
-import com.okami.apps.ej.bean.Waiter;
+import com.okami.apps.ej.bean.*;
+
+import java.util.List;
 
 public class OrderExtend extends Order {
 
@@ -35,5 +34,12 @@ public class OrderExtend extends Order {
     public void setAddress(Address address){
         this.address = address;
     }
+   private List<OrderLine> orderLines;
 
+    public List<OrderLine> getOrderLines(){
+        return orderLines;
+    }
+    public void setOrderLines(List<OrderLine> orderLines){
+        this.orderLines = orderLines;
+    }
 }

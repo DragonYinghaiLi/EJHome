@@ -1,12 +1,20 @@
 package com.okami.apps.ej.dao.extend;
 
 import com.okami.apps.ej.bean.extend.OrderExtend;
+import com.okami.apps.ej.bean.vm.OrderVM;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface OrderExtendMapper {
 
+    List<OrderExtend> query(
+            @Param("customerId") Long customerId,
+            @Param("waiterId") Long waiterId
+    );
 
-    List<OrderExtend> selectAll();
-
+    List<OrderVM> queryBasic(
+            @Param("customerId") Long customerId,
+            @Param("waiterId") Long waiterId
+    );
 }
