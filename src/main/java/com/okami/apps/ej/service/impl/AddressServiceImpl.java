@@ -2,7 +2,9 @@ package com.okami.apps.ej.service.impl;
 
 import com.okami.apps.ej.bean.Address;
 import com.okami.apps.ej.bean.AddressExample;
+import com.okami.apps.ej.bean.extend.AddressExtend;
 import com.okami.apps.ej.dao.AddressMapper;
+import com.okami.apps.ej.dao.extend.AddressExtendMapper;
 import com.okami.apps.ej.service.IAddressService;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +12,23 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /***
- * 收货地址
+ * 收货地址接口方法实现
  */
 @Service
 public class AddressServiceImpl implements IAddressService {
     @Resource
     private AddressMapper addressMapper;
+    @Resource
+    private AddressExtendMapper addressExtendMapper;
 
+    @Override
+    public List<AddressExtend> query(Long customerId) {
+        return addressExtendMapper.query(customerId);
+    }
+    @Override
+    public List<AddressExtend> queryBasic(Long categoryId) {
+        return addressExtendMapper.query(categoryId);
+    }
     /**
      * 查看所有地址
      * @return
@@ -53,7 +65,6 @@ public class AddressServiceImpl implements IAddressService {
         }
 
     }
-
     /***
      * 修改
      * @param category
@@ -68,10 +79,6 @@ public class AddressServiceImpl implements IAddressService {
             addressMapper.updateByPrimaryKeySelective(category);
         }
     }
-
-
-
-
     /***
      * 删除
      * @param id

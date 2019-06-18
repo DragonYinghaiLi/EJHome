@@ -1,6 +1,7 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Comment;
+import com.okami.apps.ej.bean.extend.CommentExtend;
 
 import java.util.List;
 
@@ -8,6 +9,9 @@ import java.util.List;
  *订单评价接口
  */
 public interface ICommentService {
+    List<CommentExtend> queryBasic(Long orderId);
+
+    List<CommentExtend> query(Long orderId);
     //查看所有评论
     public List<Comment> findAllComment();
     //根据订单id查询评论

@@ -1,7 +1,9 @@
 package com.okami.apps.ej.service.impl;
 import com.okami.apps.ej.bean.Comment;
 import com.okami.apps.ej.bean.CommentExample;
+import com.okami.apps.ej.bean.extend.CommentExtend;
 import com.okami.apps.ej.dao.CommentMapper;
+import com.okami.apps.ej.dao.extend.CommentExtendMapper;
 import com.okami.apps.ej.service.ICommentService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -14,7 +16,24 @@ public class CommentServiceImpl implements ICommentService {
     @Resource
     private CommentMapper commentMapper;
 
+    @Resource
+    private CommentExtendMapper commentExtendMapper;
 
+
+    @Override
+    public List<CommentExtend> queryBasic(Long orderId) {
+        return commentExtendMapper.query(orderId);
+    }
+
+    @Override
+    public List<CommentExtend> query(Long orderId) {
+        return commentExtendMapper.query(orderId);
+    }
+
+    /**
+     * 查看所有评论
+     * @return
+     */
     public List<Comment> findAllComment() {
         return null;
     }

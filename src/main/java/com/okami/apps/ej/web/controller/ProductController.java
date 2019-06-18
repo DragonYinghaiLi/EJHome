@@ -1,6 +1,7 @@
 package com.okami.apps.ej.web.controller;
 
 import com.okami.apps.ej.bean.Product;
+import com.okami.apps.ej.bean.extend.ProductExtend;
 import com.okami.apps.ej.service.IProductService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
@@ -24,7 +25,19 @@ import java.util.Map;
 public class ProductController {
     @Autowired
     private  IProductService productService;
+    @GetMapping("queryBasic")
+    @ApiOperation("查询产品信息，返回列表数据")
+    public Message queryBasic(Long categoryId){
+        List<ProductExtend> list = productService.queryBasic(categoryId);
+        return MessageUtil.success("success",list);
+    }
 
+    @GetMapping("query")
+    @ApiOperation("查询产品信息，并且产品级联关键的属性")
+    public Message query(Long categoryId){
+        List<ProductExtend> list = productService.query(categoryId);
+        return MessageUtil.success("success",list);
+    }
 
     @ApiOperation("查询全部上线产品")
     @GetMapping("findAllProduct")

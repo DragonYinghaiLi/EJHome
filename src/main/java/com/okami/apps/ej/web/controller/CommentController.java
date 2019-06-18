@@ -2,6 +2,7 @@ package com.okami.apps.ej.web.controller;
 
 
 import com.okami.apps.ej.bean.Comment;
+import com.okami.apps.ej.bean.extend.CommentExtend;
 import com.okami.apps.ej.service.ICommentService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
@@ -22,7 +23,20 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private ICommentService commentService;
+    @GetMapping("queryBasic")
 
+    @ApiOperation("查询评论信息，返回列表数据")
+    public Message queryBasic(Long orderId){
+        List<CommentExtend> list = commentService.queryBasic(orderId);
+        return MessageUtil.success("success",list);
+    }
+
+    @GetMapping("query")
+    @ApiOperation("查询评论信息，并且评论级联关键的属性")
+    public Message query(Long orderId){
+        List<CommentExtend> list = commentService.query(orderId);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("通过订单id查询评论")
     @GetMapping("findCommentByOrderId")
     public Message findCommentByOrderId(

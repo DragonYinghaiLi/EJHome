@@ -1,6 +1,7 @@
 package com.okami.apps.ej.web.controller;
 
 import com.okami.apps.ej.bean.Address;
+import com.okami.apps.ej.bean.extend.AddressExtend;
 import com.okami.apps.ej.service.IAddressService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
@@ -29,7 +30,12 @@ public class AddressController {
         List<Address> list=addressService.findAddressAll();
         return MessageUtil.success("success",list);
     }
-
+    @GetMapping("query")
+    @ApiOperation("查询订单信息，并且订单级联关键的属性")
+    public Message query(Long customerId){
+        List<AddressExtend> list = addressService.query(customerId);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("通过id查询用户信息")
     @GetMapping("findAddressById")
     public  Message findAddressById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){

@@ -1,6 +1,7 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Product;
+import com.okami.apps.ej.bean.extend.ProductExtend;
 
 import java.util.List;
 import java.util.Map;
@@ -10,10 +11,14 @@ import java.util.Map;
  */
 public interface IProductService {
     //查询所有产品
-     List<Product> findAllProduct();
+    List<Product> findAllProduct();
+    //关联查询
+    List<ProductExtend> queryBasic(Long categoryId);
+
+    List<ProductExtend> query(Long categoryId);
 
     //根据页号进行分页查询
-     List<Product> findProductByPage(int currentPage);
+    List<Product> findProductByPage(int currentPage);
 
     //模糊查询
     List<Product> queryCustomer(Product product);
@@ -22,23 +27,23 @@ public interface IProductService {
     public List<Product> findProductByName(String name)throws Exception;
 
     //根据分类id查询该分类下的所有产品
-     List<Product> findProductByCategoryId(Long category_id);
+    List<Product> findProductByCategoryId(Long category_id);
 
     //根据商品id删除该商品
-     void deleteProductById(Long id)throws Exception;
+    void deleteProductById(Long id)throws Exception;
 
     //批量删除
-     void deleteBathProduct(List<Long> id)throws Exception;
+    void deleteBathProduct(List<Long> id)throws Exception;
 
     //添加产品
-     void insertProduct(Product product)throws Exception;
+    void insertProduct(Product product)throws Exception;
 
     //批量添加产品
-      void insertBathProduct(List<Product> products)throws Exception;
+    void insertBathProduct(List<Product> products)throws Exception;
 
     //修改商品的信息
-     void updateProduct(Product product)throws Exception;
+    void updateProduct(Product product)throws Exception;
 
     //批量修改商品状态
-     void updateBatchProductStatus(Map<String,Object> map) throws Exception;
+    void updateBatchProductStatus(Map<String,Object> map) throws Exception;
 }

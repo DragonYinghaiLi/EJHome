@@ -3,7 +3,9 @@ package com.okami.apps.ej.service.impl;
 
 import com.okami.apps.ej.bean.Product;
 import com.okami.apps.ej.bean.ProductExample;
+import com.okami.apps.ej.bean.extend.ProductExtend;
 import com.okami.apps.ej.dao.ProductMapper;
+import com.okami.apps.ej.dao.extend.ProductExtendMapper;
 import com.okami.apps.ej.service.IProductService;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ public class ProductServiceImpl  implements IProductService {
 
     @Resource
     private ProductMapper productMapper;
+    @Resource
+    private ProductExtendMapper productExtendMapper;
 
 
     /**
@@ -34,6 +38,19 @@ public class ProductServiceImpl  implements IProductService {
         return findAllProductList;
     }
 
+
+
+
+    @Override
+    public List<ProductExtend> queryBasic(Long categoryId) {
+        return productExtendMapper.query(categoryId);
+    }
+
+    @Override
+    public List<ProductExtend> query(Long categoryId) {
+
+        return productExtendMapper.query(categoryId);
+    }
     /***
      * 根据产品名称查询产品信息
      * @param name

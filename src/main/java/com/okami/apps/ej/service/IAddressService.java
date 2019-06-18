@@ -1,6 +1,7 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Address;
+import com.okami.apps.ej.bean.extend.AddressExtend;
 
 import java.util.List;
 
@@ -8,6 +9,10 @@ import java.util.List;
  * 地址接口
  */
 public interface IAddressService {
+    //关联查询
+    List<AddressExtend> query(Long customerId);
+    List<AddressExtend> queryBasic(Long customerId);
+
     //查看所有地址
     List<Address> findAddressAll();
     //根据id插入地址
