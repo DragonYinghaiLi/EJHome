@@ -12,13 +12,13 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-    public interface ProductExtendMapper {
-        List<ProductExtend> query(
-                @Param("categoryId") Long categoryId
-        );
+public interface ProductExtendMapper {
+    List<ProductExtend> query(
+            @Param("categoryId") Long categoryId
+    );
 
 
-        List<ProductVM> queryBasic(
-                @Param("categoryId") Long categoryId
-        ) ;
+    List<ProductVM> queryBasic(
+            @Param("categoryId") Long categoryId
+    ) ;
 }

@@ -3,26 +3,26 @@
 <mapper namespace="com.okami.apps.ej.dao.extend.OrderExtendMapper">
   <!--id,orderTime,total,cutomer_id,waiter_id,address_id-->
   <select id="queryBasic" resultMap="orderVMResultMap">
-  select
-  o.id as o_id,
-  o.total as total,
-  o.order_time as orderTime,
-  c.realname as customerName,
-  w.realname as waiterName,
-  a.city as address
-  from ej_order o,ej_customer c,ej_waiter w,ej_address a
-  <where>
-    o.customer_id = c.id
-    AND o.waiter_id = w.id
-    AND o.address_id = a.id
-    <if test="customerId!=null">
-      AND c.id = #{customerId}
-    </if>
-    <if test="waiterId != null">
-      AND w.id = #{waiterId}
-    </if>
-  </where>
-</select>
+    select
+    o.id as o_id,
+    o.total as total,
+    o.order_time as orderTime,
+    c.realname as customerName,
+    w.realname as waiterName,
+    a.city as address
+    from ej_order o,ej_customer c,ej_waiter w,ej_address a
+    <where>
+      o.customer_id = c.id
+      AND o.waiter_id = w.id
+      AND o.address_id = a.id
+      <if test="customerId!=null">
+        AND c.id = #{customerId}
+      </if>
+      <if test="waiterId != null">
+        AND w.id = #{waiterId}
+      </if>
+    </where>
+  </select>
   <resultMap id="orderVMResultMap" type="com.okami.apps.ej.bean.vm.OrderVM">
     <id column="o_id" jdbcType="BIGINT" property="orderId" />
     <result column="customerName" property="customerName" />

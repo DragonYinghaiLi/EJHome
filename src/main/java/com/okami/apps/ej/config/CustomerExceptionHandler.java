@@ -22,13 +22,13 @@ public class CustomerExceptionHandler {
         exception.printStackTrace();
         return MessageUtil.error(exception.getMessage());
 /**
-        if (exception instanceof CustomerException){
-            CustomerException customerException= (CustomerException) exception;
-            exception.printStackTrace();
-            return  MessageUtil.error(customerException.getCode(),customerException.getMessage());
-        } else {
-            exception.printStackTrace();
-           return MessageUtil.error(500, "异常信息：" + exception.getMessage());
-        }*/
+ if (exception instanceof CustomerException){
+ CustomerException customerException= (CustomerException) exception;
+ exception.printStackTrace();
+ return  MessageUtil.error(customerException.getCode(),customerException.getMessage());
+ } else {
+ exception.printStackTrace();
+ return MessageUtil.error(500, "异常信息：" + exception.getMessage());
+ }*/
     }
 }

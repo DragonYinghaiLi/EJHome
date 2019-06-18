@@ -34,8 +34,8 @@ public class CustomerController {
     @ApiOperation("通过id查询用户信息")
     @GetMapping("findCustomerById")
     public  Message findCustomerById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
-        List<Customer> list= (List<Customer>) customerService.findCustomerById(id);
-        return MessageUtil.success("查询成功",list);
+        Customer customer= customerService.findCustomerById(id);
+        return MessageUtil.success("查询成功",customer);
 
     }
     @ApiOperation("模糊查询")
@@ -55,8 +55,8 @@ public class CustomerController {
     @ApiOperation("通过id删除顾客信息")
     public Message deleteCustomerById(@NotNull @RequestParam("id")long id) throws Exception {
 
-            customerService.deleteCustomerById(id);
-            return MessageUtil.success("删除成功");
+        customerService.deleteCustomerById(id);
+        return MessageUtil.success("删除成功");
     }
 
 

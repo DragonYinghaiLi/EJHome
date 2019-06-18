@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/waiter")
 @Api(description = "服务员管理相关接口")
 public class WaiterController {
-@Autowired
+    @Autowired
     private IWaiterService waiterService;
     @GetMapping("findAllWaiter")
     @ApiOperation("查询服务员信息")
@@ -29,8 +29,8 @@ public class WaiterController {
     @ApiOperation("通过id查询服务员信息")
     @GetMapping("findWaiterById")
     public  Message findWaiterById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
-        List<Waiter> list= (List<Waiter>) waiterService.findWaiterById(id);
-        return MessageUtil.success("查询成功",list);
+       Waiter waiter=  waiterService.findWaiterById(id);
+        return MessageUtil.success("查询成功",waiter);
 
     }
     @ApiOperation("模糊查询")
@@ -42,8 +42,8 @@ public class WaiterController {
     @GetMapping("deleteWaiterById")
     @ApiOperation("通过id删除服务员信息")
     public Message deleteWaiterById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{
-            waiterService.deleteWaiterById(id);
-            return MessageUtil.success("删除成功") ;
+        waiterService.deleteWaiterById(id);
+        return MessageUtil.success("删除成功") ;
     }
 
     @ApiOperation("添加服务员")

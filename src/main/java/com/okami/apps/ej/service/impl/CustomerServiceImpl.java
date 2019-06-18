@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Service
 public class CustomerServiceImpl implements ICustomerService {
- @Resource
+    @Resource
     private CustomerMapper customerMapper;
 
     /**

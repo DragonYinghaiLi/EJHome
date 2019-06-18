@@ -5,7 +5,7 @@
  * Date:2018年6月10日下午6:22:51
  * Copyright (c) 2018, chenzhou1025@126.com All Rights Reserved.
  *
-*/
+ */
 
 package com.okami.apps.ej.config;
 
@@ -41,7 +41,7 @@ public class Swagger2 {
 				.paths(PathSelectors.any())
 				.build();
 	}
-	
+
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("智慧校园-E洁家政服务平台")
