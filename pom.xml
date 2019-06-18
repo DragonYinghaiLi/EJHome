@@ -63,6 +63,8 @@
     </dependencies>
 
     <build>
+        <defaultGoal>compile</defaultGoal>
+        <!--配置插件 -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

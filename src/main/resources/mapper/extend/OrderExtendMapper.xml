@@ -47,6 +47,7 @@
     w.id as w_id,
     w.realname as w_realname,
     w.telephone as w_telephone,
+    w.password as w_password,
     a.id as a_id,
     a.province,
     a.city,
@@ -86,6 +87,7 @@
     </association>
     <association property="waiter" javaType="com.okami.apps.ej.bean.Waiter">
       <id column="w_id" jdbcType="BIGINT" property="id" />
+      <result column="w_password" jdbcType="VARCHAR" property="password" />
       <result column="w_telephone" jdbcType="VARCHAR" property="telephone" />
       <result column="w_realname" jdbcType="VARCHAR" property="realname" />
     </association>

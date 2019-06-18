@@ -31,8 +31,15 @@
   <resultMap
           id="addressExtendResultMap"
           type="com.okami.apps.ej.bean.extend.AddressExtend">
-
-    <!--还有四个关联属性-->
+    <!--基本属性的映射已经继承了-->
+    <id column="a_id" jdbcType="BIGINT" property="id" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <!--还有关联属性-->
     <association property="customer" javaType="com.okami.apps.ej.bean.Customer">
       <id column="c_id" jdbcType="BIGINT" property="id" />
       <result column="c_telephone" jdbcType="VARCHAR" property="telephone" />

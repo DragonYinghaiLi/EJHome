@@ -36,14 +36,13 @@ public class AddressController {
         List<AddressExtend> list = addressService.query(customerId);
         return MessageUtil.success("success",list);
     }
-    @ApiOperation("通过id查询用户信息")
-    @GetMapping("findAddressById")
-    public  Message findAddressById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
-        List<Address> list= (List<Address>) addressService.findAddressById(id);
-        return MessageUtil.success("查询成功",list);
 
+    @ApiOperation("根据id查找地址信息")
+    @GetMapping("findByCategoryId")
+    public Message findByCategoryId(@ApiParam(value = "主键",required =true)@RequestParam(value ="id")long id) {
+        Address address = addressService.findAddressById(id);
+        return MessageUtil.success("success", address);
     }
-
     @PostMapping("deleteAddressById")
     @ApiOperation("通过id删除地址信息")
     public Message deleteAddressById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{

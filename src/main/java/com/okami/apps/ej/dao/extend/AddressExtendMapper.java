@@ -16,7 +16,5 @@ public interface AddressExtendMapper {
             @Param("customerId") Long customerId
 
     );
-    List<AddressVM> queryBasic(
-            @Param("customerId") Long customerId
-    );
+
 }

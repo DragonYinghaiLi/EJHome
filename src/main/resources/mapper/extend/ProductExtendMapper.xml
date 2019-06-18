@@ -20,14 +20,15 @@
 
 
   <resultMap id="productExtendMapper" type="com.okami.apps.ej.bean.extend.ProductExtend">
+      <!--基本映射-->
+      <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
-
-
+<!--关联映射-->
     <association property="category" javaType="com.okami.apps.ej.bean.Category">
       <id column="c_id" property="id"/>
       <result column="c_name" property="name"/>

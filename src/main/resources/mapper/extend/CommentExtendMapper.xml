@@ -29,7 +29,10 @@
   <resultMap
           id="commentExtendResultMap"
           type="com.okami.apps.ej.bean.extend.CommentExtend">
-
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="comment_time" jdbcType="BIGINT" property="commentTime" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <!--还有四个关联属性-->
     <association property="order" javaType="com.okami.apps.ej.bean.Order">
       <id column="o_id" jdbcType="BIGINT" property="id" />
