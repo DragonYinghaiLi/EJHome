@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.okami.apps.ej.dao.extend.ProductExtendMapper">
+
+    <select id="selectAll" resultMap="productExtendResultMap">
+        select
+        p.id as p_id,
+        p.name,
+        p.description,
+        p.price,
+        p.photo,
+        p.status
+        p.category_id,
+        c.id as c_id,
+        c.name,
+        c.num,
+        c.parent_id
+    from ej_product p left join ej_category c
+        on p.category_id = c.id
+    </select>
+
+    <resultMap id="productExtendResultMap"
+               type="com.okami.apps.ej.bean.extend.ProductExtend">
+        <id column="p_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="photo" property="photo"/>
+        <result column="status" property="status"/>
+        <result column="category_id" property="categoryId"/>
+        <association property="category" javaType="com.okami.apps.ej.bean.Category">
+            <id column="c_id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+</mapper>

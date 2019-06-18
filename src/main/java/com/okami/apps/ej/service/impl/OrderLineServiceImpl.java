@@ -4,14 +4,14 @@ import com.okami.apps.ej.bean.OrderLine;
 import com.okami.apps.ej.bean.OrderLineExample;
 import com.okami.apps.ej.dao.OrderLineMapper;
 import com.okami.apps.ej.service.IOrderLineService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class OrderLineService implements IOrderLineService {
-    @Autowired
+public class OrderLineServiceImpl implements IOrderLineService {
+    @Resource
     private OrderLineMapper orderLineMapper;
 
 

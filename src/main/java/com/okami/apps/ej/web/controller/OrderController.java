@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-@Api(description = "订单管理相关接口")
+@Api(description = "评论管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/order")
@@ -55,7 +55,7 @@ public class OrderController {
     }
 
     @GetMapping("deleteById")
-    @ApiOperation("通过ID删除")
+    @ApiOperation("通过ID删除订单")
     public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception{
         orderService.deleteById(id);
         return MessageUtil.success("删除成功");

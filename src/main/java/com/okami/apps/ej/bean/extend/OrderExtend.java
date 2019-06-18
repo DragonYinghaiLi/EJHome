@@ -34,7 +34,8 @@ public class OrderExtend extends Order {
     public void setAddress(Address address){
         this.address = address;
     }
-   private List<OrderLine> orderLines;
+
+    private List<OrderLine> orderLines;
 
     public List<OrderLine> getOrderLines(){
         return orderLines;

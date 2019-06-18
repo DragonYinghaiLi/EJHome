@@ -1,12 +1,14 @@
 package com.okami.apps.ej.service;
 
 import com.okami.apps.ej.bean.Address;
+import com.okami.apps.ej.bean.extend.AddressExtend;
 
 
 import java.util.List;
 
 public interface IAddressService {
 
+    List<AddressExtend> findAllWithCustomer();
     List<Address> findAll();
     Address findById(long id);
     List<Address> query(Address address);

@@ -5,14 +5,17 @@ import com.okami.apps.ej.bean.Category;
 import com.okami.apps.ej.service.ICategoryService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-
+@Api(description = "分类管理相关接口")
+@Validated
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -20,12 +23,12 @@ public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
     @GetMapping("findAll")
-    @ApiOperation("查询信息")
+    @ApiOperation("查询分类信息")
     public Message findAll(){
         List<Category> list=categoryService.findAll();
         return MessageUtil.success("success",list);
     }
-    @ApiOperation("通过id查询用户信息")
+    @ApiOperation("通过id查询分类信息")
     @GetMapping("findById")
     public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
         List<Category> list= (List<Category>) categoryService.findById(id);
@@ -40,12 +43,12 @@ public class CategoryController {
         return MessageUtil.success("success",list);
     }
     @GetMapping("deleteById")
-    @ApiOperation("通过id删除服务员信息")
+    @ApiOperation("通过id删除分类信息")
     public Message deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id) throws  Exception{
         categoryService.deleteById(id);
         return MessageUtil.success("删除成功") ;
     }
-    @ApiOperation("保存或更新顾客信息")
+    @ApiOperation("保存或更新分类信息")
     @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(Category address){
         try {
@@ -57,7 +60,7 @@ public class CategoryController {
         }
     }
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除服务员信息")
+    @ApiOperation("批量删除分类信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
         categoryService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");

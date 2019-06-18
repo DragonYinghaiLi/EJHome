@@ -3,7 +3,9 @@ package com.okami.apps.ej.service.impl;
 import com.okami.apps.ej.bean.Address;
 import com.okami.apps.ej.bean.AddressExample;
 
+import com.okami.apps.ej.bean.extend.AddressExtend;
 import com.okami.apps.ej.dao.AddressMapper;
+import com.okami.apps.ej.dao.extend.AddressExtendMapper;
 import com.okami.apps.ej.service.IAddressService;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,13 @@ public class AddressServiceImpl implements IAddressService {
 
     @Resource
     private AddressMapper addressMapper;
+    @Resource
+    private AddressExtendMapper addressExtendMapper;
 
+    @Override
+    public List<AddressExtend> findAllWithCustomer() {
+        return addressExtendMapper.selectAll();
+    }
     @Override
     public List<Address> findAll() {
         AddressExample example = new AddressExample();

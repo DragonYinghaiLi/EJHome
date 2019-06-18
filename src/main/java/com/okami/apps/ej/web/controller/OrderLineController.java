@@ -5,14 +5,17 @@ import com.okami.apps.ej.bean.OrderLine;
 import com.okami.apps.ej.service.IOrderLineService;
 import com.okami.apps.ej.utils.Message;
 import com.okami.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-
+@Api(description = "订单项管理相关接口")
+@Validated
 @RestController
 @RequestMapping("/orderline")
 public class OrderLineController {
@@ -25,7 +28,7 @@ public class OrderLineController {
         List<OrderLine> list = orderLineService.findAll();
         return MessageUtil.success("success",list);
     }
-    @ApiOperation("通过id查询用户信息")
+    @ApiOperation("通过id查询订单项信息")
     @GetMapping("findById")
     public  Message findById(@ApiParam(value = "主键",required =true)@RequestParam(value ="id") long id){
         List<OrderLine> list= (List<OrderLine>) orderLineService.findById(id);
@@ -38,7 +41,7 @@ public class OrderLineController {
         return MessageUtil.success("success",list);
     }
     @GetMapping("deleteById")
-    @ApiOperation("通过id删除顾客信息")
+    @ApiOperation("通过id删除订单项信息")
     public String deleteById(@ApiParam(value = "主键",required = true)@RequestParam("id")long id){
         try{
             orderLineService.deleteById(id);
@@ -48,7 +51,7 @@ public class OrderLineController {
             return e.getMessage();
         }
     }
-    @ApiOperation("保存或更新顾客信息")
+    @ApiOperation("保存或更新订单项信息")
     @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(OrderLine orderLine){
         try {
@@ -60,7 +63,7 @@ public class OrderLineController {
         }
     }
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除服务员信息")
+    @ApiOperation("批量删除订单项信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
         orderLineService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
