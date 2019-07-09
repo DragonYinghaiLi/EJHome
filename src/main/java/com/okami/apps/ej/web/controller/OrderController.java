@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-@Api(description = "评论管理相关接口")
+@Api(description = "订单管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/order")
